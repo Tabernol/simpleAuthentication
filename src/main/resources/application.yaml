@@ -3,3 +3,9 @@ spring:
       url: jdbc:mysql://localhost:3306/krasnopolskyi_db?createDatabaseIfNotExist=true
       username: root
       password: root
+
+
+
+token:
+  signing:
+    key: a3Jhc25vcG9sc2t5aSBtYWtzeW0gdmlhY2hlc2xhdm92aWNo
