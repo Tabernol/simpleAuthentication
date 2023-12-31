@@ -1,21 +1,39 @@
 package com.krasnoposlkyi.simpleauthentication.controller;
 
-import com.krasnoposlkyi.simpleauthentication.dao.request.SignInRequest;
-import com.krasnoposlkyi.simpleauthentication.dao.request.SignUpRequest;
-import com.krasnoposlkyi.simpleauthentication.dto.UserPostDto;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.krasnoposlkyi.simpleauthentication.dao.entity.Product;
+import com.krasnoposlkyi.simpleauthentication.dao.request.RequestPayload;
+import com.krasnoposlkyi.simpleauthentication.service.impl.CreatingService;
+import com.krasnoposlkyi.simpleauthentication.service.impl.ProductServiceImpl;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/products")
 public class ProductsController {
-    @GetMapping("/all")
-    public String getAll(){
-        return "ALLLLLLLLL";
+
+    private final ProductServiceImpl productService;
+    private final CreatingService creatingService;
+
+    public ProductsController(ProductServiceImpl productService,
+                              CreatingService creatingService) {
+        this.productService = productService;
+        this.creatingService = creatingService;
     }
 
-    @PostMapping(value = "/all", consumes="application/json")
-    public String testPost(@RequestBody SignInRequest signInRequest){
-        System.out.println(signInRequest.getUsername());
-        return signInRequest.getUsername();
+
+    @GetMapping(value = "/all")
+    public ResponseEntity<List<Product>> getAll() {
+        return ResponseEntity.ok().body(productService.getAll());
+    }
+
+    @PostMapping(value = "/add", consumes = "application/json")
+    public ResponseEntity<Integer> testPost(@RequestBody Map<String, Object> payload) {
+        return ResponseEntity.ok().body(creatingService.createTable(payload));
     }
 }

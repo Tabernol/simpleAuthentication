@@ -1,11 +1,19 @@
 spring:
-    datasource:
+  datasource:
       url: jdbc:mysql://localhost:3306/krasnopolskyi_db?createDatabaseIfNotExist=true
       username: root
       password: root
 
 
 
+#  jpa:
+#    show-sql=true:
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+#        hbm2ddl.auto: update
 token:
   signing:
     key: a3Jhc25vcG9sc2t5aSBtYWtzeW0gdmlhY2hlc2xhdm92aWNo

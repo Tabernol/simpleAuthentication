@@ -1,6 +1,6 @@
 package com.krasnoposlkyi.simpleauthentication.controller;
 
-import com.krasnoposlkyi.simpleauthentication.dao.JwtAuthenticationResponse;
+import com.krasnoposlkyi.simpleauthentication.dao.response.JwtAuthenticationResponse;
 import com.krasnoposlkyi.simpleauthentication.dao.request.SignInRequest;
 import com.krasnoposlkyi.simpleauthentication.dao.request.SignUpRequest;
 import com.krasnoposlkyi.simpleauthentication.service.AuthenticationService;
@@ -20,13 +20,11 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
     @PostMapping("/add")
     public ResponseEntity<JwtAuthenticationResponse> signUp(@RequestBody SignUpRequest request) {
-        log.info("Add request");
         return ResponseEntity.ok(authenticationService.signUp(request));
     }
 
     @PostMapping("/authenticate")
     public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody SignInRequest request) {
-        log.info("Authenticate request");
         return ResponseEntity.ok(authenticationService.signIn(request));
     }
 }

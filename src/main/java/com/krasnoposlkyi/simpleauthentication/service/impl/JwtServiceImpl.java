@@ -1,7 +1,6 @@
 package com.krasnoposlkyi.simpleauthentication.service.impl;
 
 import com.krasnoposlkyi.simpleauthentication.service.JwtService;
-//import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -67,7 +66,6 @@ public class JwtServiceImpl implements JwtService {
 
     private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey);
-        System.out.println("My decoded key = " + new String(keyBytes));
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }

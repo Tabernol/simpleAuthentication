@@ -1,6 +1,6 @@
 package com.krasnoposlkyi.simpleauthentication.service.impl;
 
-import com.krasnoposlkyi.simpleauthentication.dao.JwtAuthenticationResponse;
+import com.krasnoposlkyi.simpleauthentication.dao.response.JwtAuthenticationResponse;
 import com.krasnoposlkyi.simpleauthentication.dao.entity.Role;
 import com.krasnoposlkyi.simpleauthentication.dao.entity.User;
 import com.krasnoposlkyi.simpleauthentication.dao.repository.UserRepository;

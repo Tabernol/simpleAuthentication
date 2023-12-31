@@ -1,4 +1,4 @@
-package com.krasnoposlkyi.simpleauthentication.dao;
+package com.krasnoposlkyi.simpleauthentication.dao.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
