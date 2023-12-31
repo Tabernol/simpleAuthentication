@@ -44,7 +44,6 @@ public class SecurityConfiguration {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
-                                //                          "/products/**",
                                 "/swagger-ui.html")
                         .permitAll()
                         .anyRequest().authenticated())
@@ -68,37 +67,4 @@ public class SecurityConfiguration {
             throws Exception {
         return config.getAuthenticationManager();
     }
-
-
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests(url ->
-//                        url.requestMatchers(
-//                                "/user/add",
-////                                "/products/all",
-//                                "/swagger-ui/**",
-//                                "/v3/api-docs/**",
-//                                "/swagger-resources/**",
-//                                "/swagger-ui.html").permitAll())
-//                .formLogin(login -> login
-//                        .loginPage("/user/authenticate")
-//                        .defaultSuccessUrl("/products/all"));
-//
-//        return http.build();
-//    }
-//
-//    @Bean
-//    public AuthenticationManager authenticationManager(
-//            HttpSecurity http,
-//            BCryptPasswordEncoder bCryptPasswordEncoder,
-//            UserDetailsService userDetailsService)
-//            throws Exception {
-//        return http.getSharedObject(AuthenticationManagerBuilder.class)
-//                .userDetailsService(userDetailsService)
-//                .passwordEncoder(bCryptPasswordEncoder)
-//                .and()
-//                .build();
-//    }
-
 }
