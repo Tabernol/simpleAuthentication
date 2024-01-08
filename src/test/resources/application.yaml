@@ -1,0 +1,12 @@
+spring:
+  liquibase:
+    change-log: classpath:/db/changelog-test/db.changelog-master.yaml
+    enabled: true
+  datasource:
+    username: root
+    password: test
+
+
+token:
+  signing:
+    key: S3Jhc25vcG9sc2t5aU1ha3N5bVZpYWNoZXNsYXZvdmljaA==

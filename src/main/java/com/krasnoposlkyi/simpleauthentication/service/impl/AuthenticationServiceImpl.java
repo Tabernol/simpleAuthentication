@@ -40,11 +40,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public JwtAuthenticationResponse signIn(SignInRequest request) {
         log.info("Auth service signIn");
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
-        String jwt = jwtService.generateToken(user);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+       try {
+           authenticationManager.authenticate(
+                   new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+
+           log.info("after work authenticate manager");
+           User user = userRepository.findByUsername(request.getUsername())
+                   .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
+           log.info("before JWT SERVICE ");
+           String jwt = jwtService.generateToken(user);
+           return JwtAuthenticationResponse.builder().token(jwt).build();
+       } catch (Exception e){
+           log.error("Authentication failed: " + e.getMessage());
+           throw new IllegalArgumentException("Invalid email or password", e);
+       }
     }
 }

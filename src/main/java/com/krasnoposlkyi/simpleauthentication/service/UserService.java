@@ -11,4 +11,5 @@ public interface UserService extends UserDetailsService {
 
     UserDetailsService userDetailsService ();
 
+    User get(Long id);
 }

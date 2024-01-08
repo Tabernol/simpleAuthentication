@@ -1,5 +1,6 @@
 package com.krasnoposlkyi.simpleauthentication.service.impl;
 
+import com.krasnoposlkyi.simpleauthentication.dao.entity.User;
 import com.krasnoposlkyi.simpleauthentication.dao.repository.UserRepository;
 import com.krasnoposlkyi.simpleauthentication.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,6 +34,11 @@ public class UserServiceImpl implements UserService {
                                 new UsernameNotFoundException("Failed to retrieve user: " + username));
             }
         };
+    }
+
+    @Override
+    public User get(Long id) {
+        return userRepository.findById(id).get();
     }
 
 }
