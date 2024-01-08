@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+
 @Service
 public class JwtServiceImpl implements JwtService {
     //unique key for generating token
@@ -48,7 +49,7 @@ public class JwtServiceImpl implements JwtService {
     private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis())) //setting date of granting token
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 10)) // the token is valid for 10 minutes
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 10)) // the token is valid for 10 minutes
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256).compact();
     }
 
@@ -63,7 +64,6 @@ public class JwtServiceImpl implements JwtService {
     }
 
     private Claims extractAllClaims(String token) {
-        System.out.println(token);
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
